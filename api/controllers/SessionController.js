@@ -32,11 +32,9 @@ module.exports = {
         err: usernamePasswordRequiredError
 
       };
-
       res.redirect('/session/new');
       return;
     }
-
     User.findOne({email: req.param('email')}).exec(function foundUser(err, user){
 
       if (err) return next(err);
