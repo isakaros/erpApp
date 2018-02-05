@@ -1,0 +1,28 @@
+<div class="container" style="width: 40%">
+<form action="/product/create" method="POST" >
+  <h2 class="form-signin-heading">Add a product</h2>
+
+
+
+  <input type="text" class="form-control" placeholder="Category" name="category">
+
+  <input type="text" class="form-control" placeholder="Product name" name="name">
+
+  <input type="text" class="form-control" placeholder="Description" name="description">
+
+  <input type="text" class="form-control" placeholder="Quantity" name="quantity">
+
+  <input type="text" class="form-control" placeholder="Price per product" name="pricePer">
+
+  <input type="text" class="form-control" placeholder="Total" name="total">
+
+
+  <br />
+
+  <input type="submit" class="btn btn-lg btn-primary btn-block" value="Add Product..."/>
+  <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+
+
+
+</form>
+</div>

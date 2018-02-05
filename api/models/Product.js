@@ -5,19 +5,40 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-// module.exports = {
-//
-//   attributes: {
-//
-//     name: {
-//       type: 'string',
-//       required: true
-//     },
-//
-//     description: {
-//       type: 'string'
-//     }
-//
-//   }
-// };
+module.exports = {
+
+  attributes: {
+
+    category: {
+      type: 'string',
+      required: true
+    },
+
+    name: {
+      type: 'string',
+      required: true
+    },
+
+    description: {
+      type: 'string',
+      required: true
+    },
+
+    quantity: {
+      type: 'string',
+      required: true
+    },
+
+    pricePer: {
+      type: 'string',
+      required: true
+    },
+
+    total: {
+      type: 'string',
+      required: true
+    }
+
+  }
+};
 

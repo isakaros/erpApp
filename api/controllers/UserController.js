@@ -26,11 +26,21 @@ module.exports = {
             return res.redirect('/user/new');
           }
 
-      // res.json(user);
-      //
-      // req.session.flash ={};
+          req.session.authenticated = true;
+          req.session.User = user;
 
-      res.redirect('/user/show/' + user.id);
+          user.online = true;
+          user.save(function (err) {
+            if (err) return next(err);
+
+
+
+            // res.json(user);
+            //
+            // req.session.flash ={};
+
+            res.redirect('/user/show/' + user.id);
+          });
     });
   },
 
@@ -75,7 +85,7 @@ module.exports = {
   update: function (req, res, next) {
     User.update(req.param('id'), req.params.all(), function userUpdated (err) {
       if (err) {
-        return res.redirect('/user/show' + req.param('id'));
+        return res.redirect('/user/show/' + req.param('id'));
       }
 
       res.redirect('user/show/' + req.param('id'));
@@ -89,13 +99,14 @@ module.exports = {
 
       if (!user) return next ('User doesn\'t exist.');
 
-      User.destroy(req.param('id'), function userDestroyed(err){
+      User.destroy(req.param('id'), function userDestroyed(err) {
         if (err) return next(err);
-      });
 
-      res.redirect('/user');
+
+        res.redirect('/user');
+      });
     });
-  }
+  },
 
 };
 

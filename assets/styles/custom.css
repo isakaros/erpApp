@@ -53,3 +53,11 @@ body{
     padding: 7px 9px;
   }
 
+.panel.its-my-panel {
+  margin-bottom: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

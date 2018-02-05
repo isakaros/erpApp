@@ -31,8 +31,14 @@ module.exports.policies = {
 
     //if something is wrong change : '*' : 'sessionAuth'
     'new' : 'flash',
-    create: 'flash',
-    '*': 'sessionAuth'
+    create: 'userCanSeeProfile',
+    show: 'userCanSeeProfile',
+    edit: 'userCanSeeProfile',
+    update: 'userCanSeeProfile',
+    '*': 'admin'
+  },
+  product: {
+    '*' : 'sessionAuth'
   }
   /***************************************************************************
   *                                                                          *

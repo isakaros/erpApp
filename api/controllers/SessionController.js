@@ -64,10 +64,47 @@ module.exports = {
         req.session.authenticated = true;
         req.session.User = user;
 
-        res.redirect('/user/show/' + user.id);
+        // change status to online
+
+        user.online = true;
+        user.save(function (err) {
+          if (err) return next(err);
+
+          if (req.session.User.admin){
+            res.redirect('/user');
+            return;
+          }
+
+          res.redirect('/user/show/' + user.id);
+
+        });
+
       });
 
     });
+
+  },
+
+  destroy: function(req, res, next) {
+
+    User.findOne(req.session.User.id, function  (err, user) {
+
+      var userId = req.session.User.id;
+
+      User.update(userId, {
+        online: false
+      }, function (err) {
+        if (err) return next(err);
+
+        //wipe out the session log out
+        req.session.destroy();
+
+        //redirect the browser to the sign-in screen
+        res.redirect('/');
+
+      });
+    });
+
 
   }
 

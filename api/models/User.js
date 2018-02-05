@@ -30,6 +30,18 @@ module.exports = {
     encryptedPassword: {
       type: 'string'
     },
+
+    admin: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
+    online: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+
+
       toJSON: function () {
         var obj = this.toObject();
         delete obj.password;
@@ -41,11 +53,24 @@ module.exports = {
       }
 
     },
+
+    // beforeValidation: function (values, next) {
+    //   console.log(values);
+    //   if (typeof values.admin !== 'undefined'){
+    //     if (values.admin === 'unchecked'){
+    //       values.admin = false;
+    //     } else if (values.admin[1] === 'on'){
+    //       values.admin = true;
+    //     }
+    //   }
+    //   next();
+    // },
+
     beforeCreate: function (values, next) {
 
       //this checks to make sure the password and confirmation match before creating record
 
-      if (!values.password || values.password != values.confirmation) {
+      if (!values.password || values.password !== values.confirmation) {
 
         return next({err: ["password doesn 't match password confirmation"]});
       }
@@ -56,4 +81,5 @@ module.exports = {
         next();
       });
     }
+
   };
