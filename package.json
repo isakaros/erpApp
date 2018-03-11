@@ -1,7 +1,10 @@
 {
   "name": "erpapp",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "engines": {
+    "node": "8.9.4"
+  },
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
@@ -35,6 +38,6 @@
     "type": "git",
     "url": "git://github.com/isakaros/erpApp.git"
   },
-  "author": "anonymous node/sails user",
-  "license": ""
+  "author": "Ilias Sakaros",
+  "license": "Apache licence"
 }
