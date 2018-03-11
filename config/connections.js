@@ -82,6 +82,9 @@ module.exports.connections = {
     database: 'd3qe4vb02i1pfq' //optional
   }
 
+  //this is a test
+
+
 
   /***************************************************************************
   *                                                                          *
