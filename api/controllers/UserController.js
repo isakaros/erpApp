@@ -108,5 +108,26 @@ module.exports = {
     });
   },
 
+  // This action works with app.js socket.get('/user/subscribe') to
+  // subscribe to the User model classroom and instances of the user
+  // model
+  subscribe: function(req, res) {
+
+    // Find all current users in the user model
+    User.find(function foundUsers(err, users) {
+      if (err) return next(err);
+
+      // subscribe this socket to the User model classroom
+      User.subscribe(req.socket);
+
+      // subscribe this socket to the user instance rooms
+      User.subscribe(req.socket, users);
+
+      // This will avoid a warning from the socket for trying to render
+      // html over the socket.
+      res.send(200);
+    });
+  }
+
 };
 

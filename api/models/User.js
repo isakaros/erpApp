@@ -36,6 +36,10 @@ module.exports = {
       defaultsTo: false
     },
 
+    action:{
+      type:'string'
+    },
+
     online: {
       type: 'boolean',
       defaultsTo: false

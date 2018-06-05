@@ -27,7 +27,7 @@
       <td><%= product.description %></td>
       <td><%= product.quantity %></td>
       <td><%= product.pricePer %></td>
-      <td><%= product.total %></td>
+      <td><%= product.quantity*product.pricePer %></td>
 
       <td><a href="/product/show/<%= product.id %>" class="btn btn-sm btn-primary">Show</a></td>
       <td><a href="/product/edit/<%= product.id %>" class="btn btn-sm btn-warning">Edit</a></td>
@@ -51,11 +51,12 @@
 
   <!--</form>-->
 
-  <div class="content">
+
 
     <div style="width: 30%;">
-      <a class="btn btn-log btn-info btn-block collapsible">Add a product </a>
-      <form action="/product/create" method="POST">
+      <a class="btn btn-log btn-block collapsible">Add a product </a>
+      <div class="content">
+      <form action="/product/findOrCreate" method="POST">
 
 
         <input type="text" class="form-control" placeholder="Category" name="category">
@@ -77,8 +78,8 @@
         <input type="hidden" name="_csrf" value="<%= _csrf %>"/>
 
       </form>
+      </div>
     </div>
-  </div>
 
 </div>
 

@@ -10,4 +10,26 @@
   <h3>contact: <%= user.email %></h3>
 
   <a class="btn btn-medium btn-primary" href="/user/edit/<%= user.id %>">Edit</a>
+
+
+  <script type="text/javascript" src="/js/dependencies/sails.io.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+      // And use `io.socket.get()` to send a request to the server:
+      io.socket.get('/say/hello', user.email , function gotResponse(data, jwRes) {
+        console.log('Server responded with status code ' + jwRes.statusCode + ' and data: ', data);
+      });
+
+      io.socket.on('user', function (event){
+        console.log(event);
+        // => see below
+      });
+    });
+
+  </script>
+
+
+
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="jumbotron">
 
-    <h2>ERP APP</h2>
+    <h2>Welcome to this ERP APP</h2>
 
 
 
@@ -19,7 +19,20 @@
  <!--</ul>-->
 </div>
 
-    <a href="/user/new" class="btn btn-log btn-success">Sing up!</a>
+    <% if (session.authenticated) { %>
+
+    <% } %>
+
+    <% if (!session.authenticated) { %>
+    <p>Please sign in in order to proceed!</p>
+    <% } %>
+
+    <% if (session.authenticated && session.User.admin) { %>
+    <p>Create a new User From here</p>
+    <a href="/user/new" class="btn btn-log btn-success">Create User</a>
+
+    <% } %>
+
   </div>
 </div>
 

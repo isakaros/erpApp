@@ -19,6 +19,10 @@ module.exports = {
     res.view('session/new');
   },
 
+  'wrong': function (req,res) {
+    res.view('session/wrong');
+  },
+
   create: function (req, res, next) {
 
     if (!req.param('email') || !req.param('password')) {
@@ -87,22 +91,35 @@ module.exports = {
 
   destroy: function(req, res, next) {
 
-    User.findOne(req.session.User.id, function  (err, user) {
+    User.findOne(req.session.User.id, function foundUser (err, user) {
 
       var userId = req.session.User.id;
 
-      User.update(userId, {
-        online: false
-      }, function (err) {
-        if (err) return next(err);
+      if (user){
+
+        User.update(userId, {
+          online: false
+        }, function (err) {
+          if (err) return next(err);
+          //wipe out the session log out
+          req.session.destroy();
+
+          //redirect the browser to the sign-in screen
+          res.redirect('/');
+
+        });
+      } else {
 
         //wipe out the session log out
         req.session.destroy();
 
         //redirect the browser to the sign-in screen
         res.redirect('/');
+      }
 
-      });
+
+
+
     });
 
 

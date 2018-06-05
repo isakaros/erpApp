@@ -23,6 +23,7 @@ module.exports = function(req, res, ok) {
 
   if (req.session.User.id || req.session.User.admin){
     return ok();
+    // res.redirect ('/user/show' + User.id);
   }
 
 // user is ot allowed
@@ -31,7 +32,8 @@ module.exports = function(req, res, ok) {
     req.session.flash = {
       err: requireAdminError
     };
-    res.redirect('/session/new');
+    // res.redirect('/session/new');
+    res.redirect('/');
     return;
   }
 
